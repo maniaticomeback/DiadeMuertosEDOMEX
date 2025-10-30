@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arte Popular del Día de Muertos</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --naranja-dm: #ff8c00;
+            --morado-dm: #4a235a;
+            --rosa-dm: #e84393;
+            --amarillo-dm: #f9c74f;
+            --verde-dm: #57d836;
+        }
+        
+        body {
+            padding-top: 70px;
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .navbar-degradada {
+            background: linear-gradient(90deg, var(--naranja-dm), var(--verde-dm));
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .navbar-degradada .nav-link {
+            color: white;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar-degradada .nav-link:hover {
+            color: var(--morado-dm);
+        }
+        
+        .hero-section {
+            background: url('banner.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 0 0 10px 10px;
+            position: relative;
+        }
+        
+        /* Capa oscura para mejor legibilidad del texto */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .hero-section .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title {
+            color: var(--morado-dm);
+            border-bottom: 2px solid var(--naranja-dm);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        
+        /* Filtros */
+        .filtros-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .btn-filtro {
+            background: white;
+            color: var(--morado-dm);
+            border: 2px solid var(--naranja-dm);
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-filtro:hover,
+        .btn-filtro.active {
+            background: linear-gradient(90deg, var(--naranja-dm), var(--rosa-dm));
+            color: white;
+            border-color: transparent;
+        }
+        
+        /* Galería */
+        .galeria-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .galeria-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .galeria-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .galeria-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .galeria-item:hover .galeria-img {
+            transform: scale(1.05);
+        }
+        
+        .galeria-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .galeria-item:hover .galeria-info {
+            transform: translateY(0);
+        }
+        
+        .galeria-categoria {
+            background: var(--naranja-dm);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        
+        /* Estilos para el slider */
+        .carousel-item {
+            height: 500px;
+            position: relative;
+        }
+        
+        .carousel-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        .carousel-caption-custom {
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .carousel-control-prev, .carousel-control-next {
+            width: 5%;
+        }
+        
+        .carousel-indicators [data-bs-target] {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin: 0 5px;
+            background-color: var(--naranja-dm);
+        }
+        
+        /* Manualidades */
+        .manualidad-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 25px;
+            height: 100%;
+        }
+        
+        .manualidad-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .manualidad-img {
+            height: 250px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .manualidad-header {
+            background: linear-gradient(90deg, var(--naranja-dm), var(--rosa-dm));
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+        }
+        
+        .manualidad-body {
+            padding: 20px;
+        }
+        
+        .manualidad-tipo {
+            color: var(--morado-dm);
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .manualidad-icon {
+            background-color: var(--morado-dm);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+        
+        .footer {
+            background-color: var(--morado-dm);
+            color: white;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 40px 0;
+            }
+            
+            .carousel-item {
+                height: 300px;
+            }
+            
+            .galeria-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-degradada">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white fw-bold" href="Noticias.html">
+                <i class="fas fa-skull-crossbones me-2"></i>
+                Día de Muertos
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Noticias.html">Noticias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="LineadeTiempo.html">Línea de Tiempo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ComidasTipicas.html">Comidas Típicas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="ArtePopular.html">Arte Popular</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Leyendas.html">Leyendas y Mitos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Tradiciones.html">Tradiciones</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sección Hero -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Arte Popular del Día de Muertos</h1>
+            <p class="lead">La expresión artística que da vida a nuestras tradiciones</p>
+            <p>Descubre las manualidades y creaciones que embellecen esta celebración</p>
+        </div>
+    </section>
+
+    <!-- Slider de imágenes -->
+    <section class="container mb-5">
+        <h2 class="section-title text-center">Galería de Arte Popular</h2>
+        <div id="arteSlider" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#arteSlider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#arteSlider" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#arteSlider" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#arteSlider" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="CalacasDecoradas.JPG" class="carousel-img" alt="Arte popular mexicano">
+                    <div class="carousel-caption carousel-caption-custom">
+                        <h5>Arte Popular Mexicano</h5>
+                        <p>Expresiones artísticas que reflejan la riqueza cultural de nuestras tradiciones</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="ArtesaniaMain.jpg" class="carousel-img" alt="Manualidades tradicionales">
+                    <div class="carousel-caption carousel-caption-custom">
+                        <h5>Manualidades Tradicionales</h5>
+                        <p>Creaciones artesanales que embellecen los altares y ofrendas</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="PapelPicado.jpg" class="carousel-img" alt="Papel picado">
+                    <div class="carousel-caption carousel-caption-custom">
+                        <h5>Papel Picado</h5>
+                        <p>Coloridas decoraciones que dan vida a las celebraciones</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="velas.jpg" class="carousel-img" alt="Arte popular">
+                    <div class="carousel-caption carousel-caption-custom">
+                        <h5>Expresiones Artísticas</h5>
+                        <p>Diversas formas de arte que honran a nuestros difuntos</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#arteSlider" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#arteSlider" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Galería con Filtros -->
+    <section class="container mb-5">
+        <h2 class="section-title text-center">Galería de Arte Popular</h2>
+        
+        <!-- Filtros -->
+        <div class="filtros-container">
+            <button class="btn btn-filtro active" data-filter="todos">Todos</button>
+            <button class="btn btn-filtro" data-filter="papel-picado">Papel Picado</button>
+            <button class="btn btn-filtro" data-filter="calaveras">Calaveras</button>
+            <button class="btn btn-filtro" data-filter="alfombras">Alfombras</button>
+            <button class="btn btn-filtro" data-filter="catrinas">Catrinas</button>
+            <button class="btn btn-filtro" data-filter="artesania">Artesanía</button>
+        </div>
+        
+        <!-- Galería -->
+        <div class="galeria-container">
+            <!-- Item 1 - Papel Picado -->
+            <div class="galeria-item" data-category="papel-picado">
+                <img src="PapelPicado2.jpg" class="galeria-img" alt="Papel Picado">
+                <span class="galeria-categoria">Papel Picado</span>
+                <div class="galeria-info">
+                    <h5>Papel Picado Tradicional</h5>
+                    <p>Decoración colorida hecha con papel de china</p>
+                </div>
+            </div>
+            
+            <!-- Item 2 - Calaveras -->
+            <div class="galeria-item" data-category="calaveras">
+                <img src="calavera1.jpg" class="galeria-img" alt="Calaveras de Azúcar">
+                <span class="galeria-categoria">Calaveras</span>
+                <div class="galeria-info">
+                    <h5>Calaveras de Azúcar</h5>
+                    <p>Dulces tradicionales con forma de cráneo</p>
+                </div>
+            </div>
+            
+            <!-- Item 3 - Alfombras -->
+            <div class="galeria-item" data-category="alfombras">
+                <img src="Alfombra.jpg" class="galeria-img" alt="Alfombra de Aserrín">
+                <span class="galeria-categoria">Alfombras</span>
+                <div class="galeria-info">
+                    <h5>Alfombra de Aserrín</h5>
+                    <p>Arte efímero con serrín teñido</p>
+                </div>
+            </div>
+            
+            <!-- Item 4 - Catrinas -->
+            <div class="galeria-item" data-category="catrinas">
+                <img src="calacachida.jpg" class="galeria-img" alt="Catrina">
+                <span class="galeria-categoria">Catrinas</span>
+                <div class="galeria-info">
+                    <h5>La Catrina</h5>
+                    <p>Icono creado por José Guadalupe Posada</p>
+                </div>
+            </div>
+            
+            <!-- Item 5 - Artesanía -->
+            <div class="galeria-item" data-category="artesania">
+                <img src="artesanias.jpeg" class="galeria-img" alt="Artesanía Mexicana">
+                <span class="galeria-categoria">Artesanía</span>
+                <div class="galeria-info">
+                    <h5>Artesanía en Barro</h5>
+                    <p>Figuras tradicionales en arcilla</p>
+                </div>
+            </div>
+            
+            <!-- Item 6 - Papel Picado -->
+            <div class="galeria-item" data-category="papel-picado">
+                <img src="PapelPicado2.png" class="galeria-img" alt="Papel Picado Colorido">
+                <span class="galeria-categoria">Papel Picado</span>
+                <div class="galeria-info">
+                    <h5>Papel Picado Moderno</h5>
+                    <p>Diseños contemporáneos en papel</p>
+                </div>
+            </div>
+            
+            <!-- Item 7 - Calaveras -->
+            <div class="galeria-item" data-category="calaveras">
+                <img src="calavera2.jpg" class="galeria-img" alt="Calaveras Decoradas">
+                <span class="galeria-categoria">Calaveras</span>
+                <div class="galeria-info">
+                    <h5>Calaveras Decoradas</h5>
+                    <p>Arte en miniatura sobre cráneos</p>
+                </div>
+            </div>
+            
+            <!-- Item 8 - Artesanía -->
+            <div class="galeria-item" data-category="artesania">
+                <img src="ArtesaniasM.jpg" class="galeria-img" alt="Artesanía en Madera">
+                <span class="galeria-categoria">Artesanía</span>
+                <div class="galeria-info">
+                    <h5>Tallado en Madera</h5>
+                    <p>Figuras tradicionales en madera</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Manualidades -->
+    <section class="container mb-5">
+        <h2 class="section-title text-center">Manualidades Tradicionales</h2>
+        <div class="row">
+            <!-- Manualidad 1 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="manualidad-card">
+                    <div class="manualidad-header">
+                        Papel Picado
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="manualidad-img" alt="Papel Picado">
+                    <div class="manualidad-body">
+                        <div class="manualidad-tipo">
+                            <div class="manualidad-icon">
+                                <i class="fas fa-cut"></i>
+                            </div>
+                            Decoración
+                        </div>
+                        <p>El papel picado es una artesanía mexicana que consiste en recortar figuras en papel de seda de colores usando cinceles y martillos especiales.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Manualidad 2 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="manualidad-card">
+                    <div class="manualidad-header">
+                        Calaveras de Azúcar
+                    </div>
+                    <img src="calaveeritas.jpg" class="manualidad-img" alt="Calaveras de Azúcar">
+                    <div class="manualidad-body">
+                        <div class="manualidad-tipo">
+                            <div class="manualidad-icon">
+                                <i class="fas fa-skull"></i>
+                            </div>
+                            Dulce Tradicional
+                        </div>
+                        <p>Las calaveras de azúcar son uno de los elementos más reconocibles del Día de Muertos. Se elaboran con una pasta de azúcar fundida.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Manualidad 3 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="manualidad-card">
+                    <div class="manualidad-header">
+                        Alfombras de Aserrín
+                    </div>
+                    <img src="Alfombradeaserrin.jpg" class="manualidad-img" alt="Alfombras de Aserrín">
+                    <div class="manualidad-body">
+                        <div class="manualidad-tipo">
+                            <div class="manualidad-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            Arte Efímero
+                        </div>
+                        <p>Las alfombras de aserrín son creaciones efímeras hechas con serrín teñido de colores que forman intrincados diseños en el suelo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-skull-crossbones me-2"></i> Día de Muertos</h5>
+                    <p>Una tradición mexicana que celebra la vida y honra a los que se han ido.</p>
+                    <div class="d-flex">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>© 2025 - Roberto M</p>
+                    <p>Diseñado con HTML </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script para los filtros -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const filtros = document.querySelectorAll('.btn-filtro');
+            const galeriaItems = document.querySelectorAll('.galeria-item');
+            
+            filtros.forEach(filtro => {
+                filtro.addEventListener('click', function() {
+                    // Remover clase active de todos los botones
+                    filtros.forEach(btn => btn.classList.remove('active'));
+                    // Agregar clase active al botón clickeado
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    galeriaItems.forEach(item => {
+                        if (filter === 'todos' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Día de Muertos - Noticias y Tradiciones</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --naranja-dm: #ff8c00;
+            --morado-dm: #4a235a;
+            --rosa-dm: #e84393;
+            --amarillo-dm: #f9c74f;
+            --verde-dm: #57d836;
+        }
+        
+        body {
+            padding-top: 70px;
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .navbar-degradada {
+            background: linear-gradient(90deg, var(--naranja-dm), var(--verde-dm));
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .navbar-degradada .nav-link {
+            color: white;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar-degradada .nav-link:hover {
+            color: var(--morado-dm);
+        }
+        
+.hero-section {
+            background: url('banner.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 0 0 10px 10px;
+            position: relative;
+        }
+        
+        /* Capa oscura para mejor legibilidad del texto */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .hero-section .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title {
+            color: var(--morado-dm);
+            border-bottom: 2px solid var(--naranja-dm);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            color: var(--morado-dm);
+            border-bottom: 2px solid var(--naranja-dm);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .card-noticia {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 20px;
+            cursor: pointer;
+            height: 100%;
+        }
+        
+        .card-noticia:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .card-header-noticia {
+            background: linear-gradient(90deg, var(--naranja-dm), var(--rosa-dm));
+            color: white;
+            font-weight: bold;
+            padding: 12px 15px;
+        }
+        
+        .card-img-noticia {
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .badge-fecha {
+            background-color: var(--morado-dm);
+            color: white;
+        }
+        
+        .banner-lateral {
+            background: linear-gradient(135deg, var(--morado-dm), var(--rosa-dm));
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .banner-titulo {
+            color: var(--amarillo-dm);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .footer {
+            background-color: var(--morado-dm);
+            color: white;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+        
+        /* Modal personalizado */
+        .modal-content {
+            border-radius: 10px;
+            border: none;
+        }
+        
+        .modal-header {
+            background: linear-gradient(90deg, var(--naranja-dm), var(--rosa-dm));
+            color: white;
+            border-bottom: none;
+        }
+        
+        .btn-cerrar {
+            background-color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 40px 0;
+            }
+            
+            .banner-lateral {
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+   
+    <nav class="navbar navbar-expand-lg navbar-degradada">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white fw-bold" href="Noticias.html">
+            <i class="fas fa-skull-crossbones me-2"></i>
+            Día de Muertos
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="Noticias.html">Noticias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="LineadeTiempo.html">Línea de Tiempo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="ComidasTipicas.html">Comidas Típicas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="ArtePopular.html">Arte Popular</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Leyendas.html">Leyendas y Mitos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Tradiciones.html">Tradiciones</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <!-- Sección Hero -->
+    <section id="inicio" class="hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Día de Muertos</h1>
+            <p class="lead">Una tradición mexicana que honra a los seres queridos que han partido</p>
+            <p>Celebrada cada 1 y 2 de noviembre, esta festividad combina rituales indígenas con elementos del catolicismo</p>
+        </div>
+    </section>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <div class="row">
+            <!-- Columna de contenido principal -->
+            <div class="col-lg-8">
+                <section id="noticias" class="mb-5">
+                    <h2 class="section-title">Noticias del Día de Muertos</h2>
+                    <div class="row">
+                        <!-- Noticia 1 -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card card-noticia" data-bs-toggle="modal" data-bs-target="#modalNoticia1">
+                                <div class="card-header-noticia d-flex justify-content-between align-items-center">
+                                    <span>Festividades 2023</span>
+                                    <span class="badge badge-fecha">25 Oct</span>
+                                </div>
+                                <img src="Ofrendas.jpg" class="card-img-top card-img-noticia" alt="Ofrenda tradicional">
+                                <div class="card-body">
+                                    <h5 class="card-title">Preparan mega-ofrenda en Zócalo capitalino</h5>
+                                    <p class="card-text">La Ciudad de México se alista para recibir a miles de visitantes con una ofrenda monumental que romperá récords.</p>
+                                    <small class="text-muted">Haz clic para leer más</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Noticia 2 -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card card-noticia" data-bs-toggle="modal" data-bs-target="#modalNoticia2">
+                                <div class="card-header-noticia d-flex justify-content-between align-items-center">
+                                    <span>Gastronomía</span>
+                                    <span class="badge badge-fecha">22 Oct</span>
+                                </div>
+                                <img src="PanDeMuerto.jpg" class="card-img-top card-img-noticia" alt="Pan de muerto">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nuevas variedades de pan de muerto conquistan paladares</h5>
+                                    <p class="card-text">Panaderos innovan con sabores como matcha, chocolate amargo y relleno de cajeta con nuez.</p>
+                                    <small class="text-muted">Haz clic para leer más</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Noticia 3 -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card card-noticia" data-bs-toggle="modal" data-bs-target="#modalNoticia3">
+                                <div class="card-header-noticia d-flex justify-content-between align-items-center">
+                                    <span>Cultura</span>
+                                    <span class="badge badge-fecha">18 Oct</span>
+                                </div>
+                                <img src="calacachida.jpg" class="card-img-top card-img-noticia" alt="Catrina">
+                                <div class="card-body">
+                                    <h5 class="card-title">Exposición de Catrinas atrae a turistas internacionales</h5>
+                                    <p class="card-text">Museo de Arte Popular presenta colección de 50 Catrinas vestidas con trajes típicos de diferentes regiones.</p>
+                                    <small class="text-muted">Haz clic para leer más</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Noticia 4 -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card card-noticia" data-bs-toggle="modal" data-bs-target="#modalNoticia4">
+                                <div class="card-header-noticia d-flex justify-content-between align-items-center">
+                                    <span>Eventos</span>
+                                    <span class="badge badge-fecha">15 Oct</span>
+                                </div>
+                                <img src="desfile.jpg" class="card-img-top card-img-noticia" alt="Desfile">
+                                <div class="card-body">
+                                    <h5 class="card-title">Desfile de Día de Muertos promete ser más espectacular</h5>
+                                    <p class="card-text">Carros alegóricos, comparsas y música en vivo recorrerán las principales avenidas de la ciudad.</p>
+                                    <small class="text-muted">Haz clic para leer más</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="tradiciones" class="mb-5">
+                    <h2 class="section-title">Tradiciones del Día de Muertos</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card card-noticia">
+                                <div class="card-header-noticia">
+                                    <i class="fas fa-monument me-2"></i> Ofrendas y Altares
+                                </div>
+                                <div class="card-body">
+                                    <p>Las ofrendas son el elemento central de la celebración. Se colocan en altares decorados con flores de cempasúchil, velas, papel picado, comida, bebida y fotografías de los difuntos.</p>
+                                    <p>Se cree que estos altares ayudan a guiar a las almas de regreso al mundo de los vivos para disfrutar de los bienes terrenales que alguna vez gozaron.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card card-noticia">
+                                <div class="card-header-noticia">
+                                    <i class="fas fa-book me-2"></i> Calaveritas Literarias
+                                </div>
+                                <div class="card-body">
+                                    <p>Las calaveritas literarias son versos humorísticos que narran situaciones de personajes vivos desde la perspectiva de la muerte.</p>
+                                    <p>La Catrina, creada por José Guadalupe Posada, se ha convertido en un símbolo icónico de esta festividad, representando la idea de que la muerte nos iguala a todos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Columna lateral con banner -->
+            <div class="col-lg-4">
+                <div class="banner-lateral">
+                    <h3 class="banner-titulo">Próximos Eventos</h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-3">
+                            <i class="fas fa-calendar-alt me-2"></i>
+                            <strong>28 Oct:</strong> Mercado de Artesanías - Plaza Principal
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-calendar-alt me-2"></i>
+                            <strong>30 Oct:</strong> Taller de Calaveritas de Azúcar - Centro Cultural
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-calendar-alt me-2"></i>
+                            <strong>1 Nov:</strong> Desfile de Catrinas - Av. Reforma
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-calendar-alt me-2"></i>
+                            <strong>2 Nov:</strong> Noche de Velas - Panteón Municipal
+                        </li>
+                    </ul>
+                    <button class="btn btn-warning w-100 mt-3">Ver Calendario Completo</button>
+                </div>
+            
+                <div class="banner-lateral mt-4">
+                    <h3 class="banner-titulo">Suscríbete a nuestro Boletín</h3>
+                    <p>Recibe noticias y actualizaciones sobre las festividades del Día de Muertos.</p>
+                    <div class="mb-3">
+                        <input type="email" class="form-control" placeholder="Tu correo electrónico">
+                    </div>
+                    <button class="btn btn-outline-light w-100">Suscribirse</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modales para noticias -->
+    
+    <!-- Modal Noticia 1 -->
+    <div class="modal fade" id="modalNoticia1" tabindex="-1" aria-labelledby="modalNoticia1Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalNoticia1Label">Como puedes crear tu propia Ofrenda</h5>
+                    <button type="button" class="btn-cerrar" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="Altar.jpg" class="modal-img" alt="Ofrenda monumental">
+                    <p class="text-muted mb-3"><i class="far fa-calendar me-1"></i> Publicado: 25 de Octubre, 2023</p>
+                    <p>La Ciudad de México se prepara para recibir a miles de visitantes nacionales e internacionales con una ofrenda monumental en el Zócalo que promete romper récords de tamaño y diseño.</p>
+                    <p>La instalación, que abarcará más de 800 metros cuadrados, contará con elementos tradicionales como flores de cempasúchil, veladoras, papel picado y calaveras de azúcar, pero también incorporará tecnología con mapping projections que contarán historias sobre la tradición.</p>
+                    <p>"Queremos honrar nuestras raíces pero también mostrar cómo la tradición evoluciona", comentó el organizador principal, Alejandro Méndez. "Esta ofrenda será un puente entre el pasado y el presente".</p>
+                    <p>La mega-ofrenda estará abierta al público del 28 de octubre al 3 de noviembre, con horario extendido hasta las 10 pm para permitir que más personas puedan visitarla.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Compartir Noticia</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Noticia 2 -->
+    <div class="modal fade" id="modalNoticia2" tabindex="-1" aria-labelledby="modalNoticia2Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalNoticia2Label">Nuevas variedades de pan de muerto conquistan paladares</h5>
+                    <button type="button" class="btn-cerrar" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="PanDeMuerto.jpg" class="modal-img" alt="Pan de muerto innovador">
+                    <p class="text-muted mb-3"><i class="far fa-calendar me-1"></i> Publicado: 22 de Octubre, 2023</p>
+                    <p>La tradición del pan de muerto se renueva este año con innovadoras variedades que están conquistando los paladares más exigentes. Desde sabores como matcha y chocolate amargo hasta rellenos de cajeta con nuez, los panaderos mexicanos demuestran que la creatividad no tiene límites.</p>
+                    <p>La panadería "Dulce Tradición", con más de 50 años de experiencia, ha lanzado una línea especial que incluye pan de muerto relleno de queso crema con zarzamora y otro con trozos de chocolate blanco y arándanos.</p>
+                    <p>"Respetamos la esencia del pan tradicional, pero queremos ofrecer opciones para todos los gustos", explica María González, propietaria de la panadería. "Es maravilloso ver cómo los jóvenes se interesan por la tradición a través de estos nuevos sabores".</p>
+                    <p>Además de las variedades dulces, también han surgido opciones saladas como pan de muerto con jalapeño y queso, o con aceitunas y romero, ideales para acompañar platillos típicos de la temporada.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Compartir Noticia</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Noticia 3 -->
+    <div class="modal fade" id="modalNoticia3" tabindex="-1" aria-labelledby="modalNoticia3Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalNoticia3Label">Exposición de Catrinas atrae a turistas internacionales</h5>
+                    <button type="button" class="btn-cerrar" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="calacachida.jpg" class="modal-img" alt="Exposición de Catrinas">
+                    <p class="text-muted mb-3"><i class="far fa-calendar me-1"></i> Publicado: 18 de Octubre, 2023</p>
+                    <p>El Museo de Arte Popular presenta una impresionante colección de 50 Catrinas vestidas con trajes típicos de diferentes regiones de México, una exposición que ya ha atraído a más de 5,000 visitantes, muchos de ellos turistas internacionales.</p>
+                    <p>La muestra, titulada "Catrinas: Un Viaje por México", presenta estas figuras icónicas ataviadas con indumentaria tradicional de estados como Oaxaca, Jalisco, Veracruz, Chiapas y Yucatán, entre otros.</p>
+                    <p>"Cada Catrina cuenta una historia diferente y representa la riqueza cultural de su región", explica la curadora de la exposición, Laura Mendoza. "Es fascinante ver cómo un mismo símbolo puede adaptarse a tantas expresiones culturales distintas".</p>
+                    <p>La exposición permanecerá abierta hasta el 15 de noviembre y se espera que reciba más de 20,000 visitantes antes de su clausura. Los organizadores han programado visitas guiadas en español, inglés y francés para atender a los turistas extranjeros.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Compartir Noticia</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Noticia 4 -->
+    <div class="modal fade" id="modalNoticia4" tabindex="-1" aria-labelledby="modalNoticia4Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalNoticia4Label">Desfile de Día de Muertos promete ser más espectacular</h5>
+                    <button type="button" class="btn-cerrar" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="desfile.jpg" class="modal-img" alt="Desfile de Día de Muertos">
+                    <p class="text-muted mb-3"><i class="far fa-calendar me-1"></i> Publicado: 15 de Octubre, 2023</p>
+                    <p>El esperado Desfile de Día de Muertos de la Ciudad de México regresa este año con una edición ampliada que promete superar todas las expectativas. Con más de 2,000 participantes, carros alegóricos monumentales y espectáculos de música y danza, el evento se ha consolidado como uno de los más importantes de la temporada.</p>
+                    <p>La ruta del desfile se ha extendido este año para cubrir desde el Zócalo hasta el Campo Marte, permitiendo que más espectadores puedan disfrutar del espectáculo. Los organizadores esperan una asistencia de más de 500,000 personas.</p>
+                    <p>"Cada año intentamos superarnos", comenta Ricardo Sánchez, director del evento. "Este año tenemos carros alegóricos con tecnología de animatrónica que darán vida a leyendas mexicanas como La Llorona y el Charro Negro".</p>
+                    <p>Además de las comparsas tradicionales, el desfile contará con la participación de grupos de danza folklórica, bandas de música y artistas callejeros. La temática de este año es "Raíces que nos unen", enfocándose en la diversidad cultural de México.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Compartir Noticia</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-skull-crossbones me-2"></i> Día de Muertos</h5>
+                    <p>Una tradición mexicana que celebra la vida y honra a los que se han ido.</p>
+                    <div class="d-flex">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>© 2025 - Roberto M</p>
+                    <p>Diseñado con HTML </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

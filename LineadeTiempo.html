@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festividades del Estado de México</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --naranja-dm: #ff8c00;
+            --morado-dm: #4a235a;
+            --rosa-dm: #e84393;
+            --amarillo-dm: #f9c74f;
+            --verde-dm: #57d836;
+        }
+        
+        body {
+            padding-top: 70px;
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .navbar-degradada {
+            background: linear-gradient(90deg, var(--naranja-dm), var(--verde-dm));
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .navbar-degradada .nav-link {
+            color: white;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar-degradada .nav-link:hover {
+            color: var(--morado-dm);
+        }
+        
+        .hero-section {
+            background: url('banner.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 0 0 10px 10px;
+            position: relative;
+        }
+        
+        /* Capa oscura para mejor legibilidad del texto */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .hero-section .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title {
+            color: var(--morado-dm);
+            border-bottom: 2px solid var(--naranja-dm);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        
+        /* Estilos para la línea de tiempo */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--naranja-dm);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: white;
+            border: 4px solid var(--naranja-dm);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -13px;
+        }
+        
+        .right::after {
+            left: -13px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--morado-dm);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        /* Estilos para las festividades */
+        .festividad-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 25px;
+            height: 100%;
+        }
+        
+        .festividad-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .festividad-img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .festividad-header {
+            background: linear-gradient(90deg, var(--naranja-dm), var(--rosa-dm));
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+        }
+        
+        .festividad-body {
+            padding: 20px;
+        }
+        
+        .festividad-fecha {
+            color: var(--morado-dm);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            background-color: var(--morado-dm);
+            color: white;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 18px;
+            }
+            
+            .right {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg navbar-degradada">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white fw-bold" href="Noticias.html">
+            <i class="fas fa-skull-crossbones me-2"></i>
+            Día de Muertos
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="Noticias.html">Noticias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="LineadeTiempo.html">Línea de Tiempo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="ComidasTipicas.html">Comidas Típicas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="ArtePopular.html">Arte Popular</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Leyendas.html">Leyendas y Mitos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Tradiciones.html">Tradiciones</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <!-- Sección Hero -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Festividades del Estado de México</h1>
+            <p class="lead">Conoce las tradiciones y celebraciones más importantes de nuestra región</p>
+        </div>
+    </section>
+
+    <!-- Línea de tiempo -->
+    <section id="linea-tiempo" class="container mb-5">
+        <h2 class="section-title text-center">Línea de Tiempo - Día de Muertos</h2>
+        <div class="timeline">
+            <!-- 28 de Octubre -->
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <div class="timeline-date">28 de Octubre</div>
+                    <p>Se cree que en esta fecha llegan las almas de quienes fallecieron de forma trágica o violenta.</p>
+                </div>
+            </div>
+            
+            <!-- 29 de Octubre -->
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <div class="timeline-date">29 de Octubre</div>
+                    <p>Es el día en que visitan los altares aquellos que murieron por ahogamiento.</p>
+                </div>
+            </div>
+            
+            <!-- 30 y 31 de Octubre -->
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <div class="timeline-date">30 y 31 de Octubre</div>
+                    <p>En estos días, regresan los espíritus de los niños que murieron sin ser bautizados y los "angelitos" que no lograron crecer.</p>
+                </div>
+            </div>
+            
+            <!-- 1 de Noviembre -->
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <div class="timeline-date">1 de Noviembre</div>
+                    <p>Conocido como el Día de Todos los Santos, está dedicado a los niños que fallecieron.</p>
+                </div>
+            </div>
+            
+            <!-- 2 de Noviembre -->
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <div class="timeline-date">2 de Noviembre</div>
+                    <p>Se celebra a los Muertos adultos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Festividades del Estado de México -->
+    <section id="festividades" class="container mb-5">
+        <h2 class="section-title text-center">Festividades del Estado de México</h2>
+        <div class="row">
+            <!-- Posadas -->
+            <div class="col-lg-4 col-md-6">
+                <div class="festividad-card">
+                    <div class="festividad-header">
+                        Posadas
+                    </div>
+                    <img src="Posadas.jpg" class="festividad-img" alt="Posadas">
+                    <div class="festividad-body">
+                        <div class="festividad-fecha">
+                            <i class="far fa-calendar me-2"></i>9 días antes de navidad
+                        </div>
+                        <p>Se rompen piñatas y cantan villancicos. Esta tradición representa el peregrinaje de María y José buscando posada antes del nacimiento de Jesús.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Día de Muertos -->
+            <div class="col-lg-4 col-md-6">
+                <div class="festividad-card">
+                    <div class="festividad-header">
+                        Día de Muertos
+                    </div>
+                    <img src="M1.jpg" class="festividad-img" alt="Día de Muertos">
+                    <div class="festividad-body">
+                        <div class="festividad-fecha">
+                            <i class="far fa-calendar me-2"></i>1 y 2 de noviembre
+                        </div>
+                        <p>Se honra a los difuntos con ofrendas, altares decorados con flores de cempasúchil, calaveritas de azúcar y pan de muerto.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Día de la Candelaria -->
+            <div class="col-lg-4 col-md-6">
+                <div class="festividad-card">
+                    <div class="festividad-header">
+                        Día de la Candelaria
+                    </div>
+                    <img src="C1.jpg" class="festividad-img" alt="Día de la Candelaria">
+                    <div class="festividad-body">
+                        <div class="festividad-fecha">
+                            <i class="far fa-calendar me-2"></i>2 de febrero
+                        </div>
+                        <p>Se lleva el niño Dios a bendecir y se comparten tamales entre familiares y amigos. Culmina el ciclo de las posadas navideñas.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Semana Santa -->
+            <div class="col-lg-4 col-md-6">
+                <div class="festividad-card">
+                    <div class="festividad-header">
+                        Semana Santa
+                    </div>
+                    <img src="SAN.jpg" class="festividad-img" alt="Semana Santa">
+                    <div class="festividad-body">
+                        <div class="festividad-fecha">
+                            <i class="far fa-calendar me-2"></i>25 marzo a 5 abril
+                        </div>
+                        <p>Conmemoración a la pasión de Cristo. Se realizan procesiones, representaciones del Vía Crucis y otras actividades religiosas.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- La feria del Caballo -->
+            <div class="col-lg-4 col-md-6">
+                <div class="festividad-card">
+                    <div class="festividad-header">
+                        La feria del Caballo
+                    </div>
+                    <img src="FC.jpg" class="festividad-img" alt="Feria del Caballo">
+                    <div class="festividad-body">
+                        <div class="festividad-fecha">
+                            <i class="far fa-calendar me-2"></i>1 y 24 de abril
+                        </div>
+                        <p>Arte equino y fiesta brava. Exposiciones de caballos, charreadas, corridas de toros y eventos culturales relacionados con la tradición charra.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Asunción de la Virgen -->
+            <div class="col-lg-4 col-md-6">
+                <div class="festividad-card">
+                    <div class="festividad-header">
+                        Asunción de la Virgen
+                    </div>
+                    <img src="AS.jpg" class="festividad-img" alt="Asunción de la Virgen">
+                    <div class="festividad-body">
+                        <div class="festividad-fecha">
+                            <i class="far fa-calendar me-2"></i>15 de Agosto
+                        </div>
+                        <p>Se realizan danzas y fiestas en honor a la Virgen María. Procesiones, misas especiales y eventos culturales en diferentes municipios del estado.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-skull-crossbones me-2"></i> Día de Muertos</h5>
+                    <p>Una tradición mexicana que celebra la vida y honra a los que se han ido.</p>
+                    <div class="d-flex">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>© 2025 - Roberto M</p>
+                    <p>Diseñado con HTML </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

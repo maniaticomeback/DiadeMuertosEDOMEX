@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comida Típica del Día de Muertos</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --naranja-dm: #ff8c00;
+            --morado-dm: #4a235a;
+            --rosa-dm: #e84393;
+            --amarillo-dm: #f9c74f;
+            --verde-dm: #57d836;
+        }
+        
+        body {
+            padding-top: 70px;
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .navbar-degradada {
+            background: linear-gradient(90deg, var(--naranja-dm), var(--verde-dm));
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .navbar-degradada .nav-link {
+            color: white;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar-degradada .nav-link:hover {
+            color: var(--morado-dm);
+        }
+        
+       .hero-section {
+            background: url('banner.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 0 0 10px 10px;
+            position: relative;
+        }
+        
+        /* Capa oscura para mejor legibilidad del texto */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .hero-section .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title {
+            color: var(--morado-dm);
+            border-bottom: 2px solid var(--naranja-dm);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        
+        /* Galería de comida */
+        .gallery-item {
+            position: relative;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        /* Modal personalizado */
+        .modal-content {
+            border-radius: 10px;
+            border: none;
+        }
+        
+        .modal-header {
+            background: linear-gradient(90deg, var(--naranja-dm), var(--rosa-dm));
+            color: white;
+            border-bottom: none;
+        }
+        
+        .btn-cerrar {
+            background-color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .food-description {
+            line-height: 1.6;
+        }
+        
+        .food-ingredients {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        
+        .footer {
+            background-color: var(--morado-dm);
+            color: white;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 40px 0;
+            }
+            
+            .gallery-img {
+                height: 200px;
+            }
+        }
+
+        .card-custom {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.card-header-custom {
+    background: linear-gradient(90deg, var(--naranja-dm), var(--rosa-dm));
+    color: white;
+    padding: 20px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 10px 10px 0 0 !important;
+}
+
+.card-body {
+    padding: 30px;
+}
+
+.card-body h5 {
+    color: var(--morado-dm);
+    margin-bottom: 15px;
+}
+
+.card-body p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-degradada">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white fw-bold" href="Noticias.html">
+            <i class="fas fa-skull-crossbones me-2"></i>
+            Día de Muertos
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="Noticias.html">Noticias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="LineadeTiempo.html">Línea de Tiempo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="ComidasTipicas.html">Comidas Típicas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="ArtePopular.html">Arte Popular</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Leyendas.html">Leyendas y Mitos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Tradiciones.html">Tradiciones</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <!-- Sección Hero -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Comida Típica del Día de Muertos</h1>
+            <p class="lead">Los sabores que honran a nuestros difuntos</p>
+            <p>Descubre los platillos tradicionales que forman parte esencial de las ofrendas y celebraciones</p>
+        </div>
+    </section>
+
+    <section class="container mb-5">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-custom">
+                <div class="card-header-custom text-center">
+                    <i class="fas fa-utensils me-2"></i>La Importancia de la Comida en el Día de Muertos
+                </div>
+                <div class="card-body">
+                    <p>La comida en el Día de Muertos representa un puente espiritual entre los vivos y los difuntos. 
+                    Cada platillo colocado en la ofrenda tiene un profundo significado cultural y espiritual:</p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <h5><i class="fas fa-heart text-danger me-2"></i>Significado Espiritual</h5>
+                            <p>Se cree que las almas de los difuntos regresan para disfrutar de la esencia y aroma 
+                            de sus platillos favoritos. La comida en la ofrenda nutre simbólicamente a las almas 
+                            durante su visita anual al mundo terrenal.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h5><i class="fas fa-history text-warning me-2"></i>Conexión Ancestral</h5>
+                            <p>Al preparar y compartir los mismos platillos que disfrutaban nuestros antepasados, 
+                            mantenemos viva su memoria y fortalecemos los lazos familiares a través de generaciones.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <h5><i class="fas fa-seedling text-success me-2"></i>Ofrenda de Vida</h5>
+                            <p>Los alimentos representan el ciclo de la vida, la muerte y el renacimiento. 
+                            Desde el maíz hasta las frutas, cada ingrediente simboliza la regeneración constante 
+                            de la naturaleza.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h5><i class="fas fa-users text-primary me-2"></i>Comunidad y Compartir</h5>
+                            <p>La preparación y consumo colectivo de estos platillos fortalece los lazos comunitarios 
+                            y crea espacios de convivencia donde se comparten historias y recuerdos de los seres queridos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Galería de Comida -->
+    <section id="galeria" class="container mb-5">
+        <h2 class="section-title text-center">Galería de Comida Tradicional</h2>
+        <div class="row">
+            <!-- Pan de Muerto -->
+            <div class="col-lg-4 col-md-6">
+                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#modalPan">
+                    <img src="PanDeMuerto.jpg" class="gallery-img" alt="Pan de Muerto">
+                    <div class="gallery-caption">Pan de Muerto</div>
+                </div>
+            </div>
+            
+            <!-- Calabaza en Tacha -->
+            <div class="col-lg-4 col-md-6">
+                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#modalCalabaza">
+                    <img src="Calabaza-en-tacha.jpg" class="gallery-img" alt="Calabaza en Tacha">
+                    <div class="gallery-caption">Calabaza en Tacha</div>
+                </div>
+            </div>
+            
+            <!-- Mole -->
+            <div class="col-lg-4 col-md-6">
+                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#modalMole">
+                    <img src="mole.jpg" class="gallery-img" alt="Mole">
+                    <div class="gallery-caption">Mole</div>
+                </div>
+            </div>
+            
+            <!-- Tamales -->
+            <div class="col-lg-4 col-md-6">
+                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#modalTamales">
+                    <img src="TAMALES.jpg" class="gallery-img" alt="Tamales">
+                    <div class="gallery-caption">Tamales</div>
+                </div>
+            </div>
+            
+            <!-- Atole -->
+            <div class="col-lg-4 col-md-6">
+                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#modalAtole">
+                    <img src="Atole.jpg" class="gallery-img" alt="Atole">
+                    <div class="gallery-caption">Atole</div>
+                </div>
+            </div>
+            
+            <!-- Calaveritas de Azúcar -->
+            <div class="col-lg-4 col-md-6">
+                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#modalCalaveritas">
+                    <img src="calaveeritas.jpg" class="gallery-img" alt="Calaveritas de Azúcar">
+                    <div class="gallery-caption">Calaveritas de Azúcar</div>
+                </div>
+            </div>
+            
+            <!-- Pozole -->
+            <div class="col-lg-4 col-md-6">
+                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#modalPozole">
+                    <img src="pozole.jpg" class="gallery-img" alt="Pozole">
+                    <div class="gallery-caption">Pozole</div>
+                </div>
+            </div>
+            
+            <!-- Champurrado -->
+            <div class="col-lg-4 col-md-6">
+                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#modalChampurrado">
+                    <img src="Champurrado.jpg" class="gallery-img" alt="Champurrado">
+                    <div class="gallery-caption">Champurrado</div>
+                </div>
+            </div>
+            
+            <!-- Fruta Cristalizada -->
+            <div class="col-lg-4 col-md-6">
+                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#modalFruta">
+                    <img src="FrutasC.jpg" class="gallery-img" alt="Fruta Cristalizada">
+                    <div class="gallery-caption">Fruta Cristalizada</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modales para la galería -->
+    
+    <!-- Modal Pan de Muerto -->
+    <div class="modal fade" id="modalPan" tabindex="-1" aria-labelledby="modalPanLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalPanLabel">Pan de Muerto</h5>
+                    <button type="button" class="btn-cerrar" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="PanDeMuerto.jpg" class="modal-img" alt="Pan de Muerto">
+                    <div class="food-description">
+                        <p>El Pan de Muerto es uno de los elementos más emblemáticos de las ofrendas del Día de Muertos. Su forma circular representa el ciclo de la vida y la muerte, mientras que la bolita central simboliza el cráneo y las tiras cruzadas representan los huesos.</p>
+                        <p>Se elabora con harina, huevo, mantequilla, levadura y se aromatiza con esencia de naranja o anís. Se espolvorea con azúcar blanca o roja, dándole un sabor dulce y textura suave.</p>
+                    </div>
+                    <div class="food-ingredients">
+                        <h6>Ingredientes principales:</h6>
+                        <ul>
+                            <li>Harina de trigo</li>
+                            <li>Huevos</li>
+                            <li>Mantequilla</li>
+                            <li>Levadura</li>
+                            <li>Esencia de naranja</li>
+                            <li>Azúcar</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Calabaza en Tacha -->
+    <div class="modal fade" id="modalCalabaza" tabindex="-1" aria-labelledby="modalCalabazaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCalabazaLabel">Calabaza en Tacha</h5>
+                    <button type="button" class="btn-cerrar" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="Calabaza-en-tacha.jpg" class="modal-img" alt="Calabaza en Tacha">
+                    <div class="food-description">
+                        <p>La Calabaza en Tacha es un dulce tradicional hecho con calabaza de castilla cocida en piloncillo (azúcar de caña sin refinar) con canela y otros condimentos. Su nombre proviene del proceso de "tachar" o marcar con líneas la calabaza antes de cocerla.</p>
+                        <p>Este postre tiene una textura suave y un sabor dulce con notas de canela. Es común encontrarlo en las ofrendas y como postre durante las celebraciones del Día de Muertos.</p>
+                    </div>
+                    <div class="food-ingredients">
+                        <h6>Ingredientes principales:</h6>
+                        <ul>
+                            <li>Calabaza de castilla</li>
+                            <li>Piloncillo</li>
+                            <li>Canela en raja</li>
+                            <li>Clavos de olor</li>
+                            <li>Naranja</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Mole -->
+    <div class="modal fade" id="modalMole" tabindex="-1" aria-labelledby="modalMoleLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalMoleLabel">Mole</h5>
+                    <button type="button" class="btn-cerrar" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="mole.jpg" class="modal-img" alt="Mole">
+                    <div class="food-description">
+                        <p>El Mole es uno de los platillos más representativos de la gastronomía mexicana y ocupa un lugar especial en las ofrendas del Día de Muertos. Existen muchas variedades regionales, siendo el mole poblano uno de los más conocidos.</p>
+                        <p>Esta salsa compleja combina ingredientes como chiles, especias, chocolate, semillas y frutos secos, creando un sabor único que equilibra lo dulce, lo salado y lo picante.</p>
+                    </div>
+                    <div class="food-ingredients">
+                        <h6>Ingredientes principales:</h6>
+                        <ul>
+                            <li>Chiles (ancho, mulato, pasilla)</li>
+                            <li>Chocolate</li>
+                            <li>Almendras, cacahuates</li>
+                            <li>Ajonjolí</li>
+                            <li>Especias (canela, clavo, pimienta)</li>
+                            <li>Tortilla, pan tostado</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Tamales -->
+    <div class="modal fade" id="modalTamales" tabindex="-1" aria-labelledby="modalTamalesLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTamalesLabel">Tamales</h5>
+                    <button type="button" class="btn-cerrar" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="TAMALES.jpg" class="modal-img" alt="Tamales">
+                    <div class="food-description">
+                        <p>Los Tamales son un alimento prehispánico que consiste en una masa de maíz rellena de diversos ingredientes, envuelta en hojas de maíz o plátano y cocida al vapor. Son un elemento fundamental en las celebraciones del Día de Muertos.</p>
+                        <p>Existen múltiples variedades regionales con diferentes rellenos como mole, rajas con queso, dulce, verde, entre otros. Su preparación suele ser comunitaria, reuniendo a familiares y amigos.</p>
+                    </div>
+                    <div class="food-ingredients">
+                        <h6>Ingredientes principales:</h6>
+                        <ul>
+                            <li>Masa de maíz nixtamalizado</li>
+                            <li>Manteca de cerdo</li>
+                            <li>Hojas de maíz o plátano</li>
+                            <li>Relleno (carne, mole, queso, etc.)</li>
+                            <li>Caldo o consomé</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Atole -->
+<div class="modal fade" id="modalAtole" tabindex="-1" aria-labelledby="modalAtoleLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAtoleLabel">Atole</h5>
+                <button type="button" class="btn-cerrar" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="https://images.unsplash.com/photo-1570194065650-2f894c5e0b6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img" alt="Atole">
+                <p class="text-muted mb-3"><i class="far fa-calendar me-1"></i> Bebida tradicional</p>
+                <div class="food-description">
+                    <p>El atole es una bebida caliente de origen prehispánico elaborada a base de maíz, que se consume tradicionalmente durante las festividades del Día de Muertos. Esta bebida espesa y nutritiva acompaña perfectamente los platillos principales de la ofrenda.</p>
+                    <p>Existen diversas variedades como el atole de guayaba, fresa, chocolate o vainilla, pero el más tradicional para estas fechas es el atole blanco, que simboliza la pureza y la conexión con las raíces indígenas.</p>
+                    <p>"El atole calienta el cuerpo y el alma, preparándonos para recibir a nuestros seres queridos", comentan las abuelas que mantienen viva esta tradición.</p>
+                </div>
+                <div class="food-ingredients">
+                    <h6>Ingredientes principales:</h6>
+                    <ul>
+                        <li>Maíz nixtamalizado</li>
+                        <li>Agua o leche</li>
+                        <li>Piloncillo o azúcar</li>
+                        <li>Canela en raja</li>
+                        <li>Esencia de vainilla (opcional)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Compartir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Calaveritas de Azúcar -->
+<div class="modal fade" id="modalCalaveritas" tabindex="-1" aria-labelledby="modalCalaveritasLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalCalaveritasLabel">Calaveritas de Azúcar</h5>
+                <button type="button" class="btn-cerrar" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="https://images.unsplash.com/photo-1572015099635-faee6d997b1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img" alt="Calaveritas de Azúcar">
+                <p class="text-muted mb-3"><i class="far fa-calendar me-1"></i> Dulce tradicional</p>
+                <div class="food-description">
+                    <p>Las calaveritas de azúcar son uno de los elementos más icónicos de las ofrendas del Día de Muertos. Estas coloridas representaciones de cráneos humanos se elaboran con una técnica que data de la época colonial, cuando los evangelizadores utilizaron el arte del alfeñique para crear imágenes religiosas.</p>
+                    <p>Lo más característico es que llevan escrito en la frente el nombre de una persona viva, representando de manera humorística y festiva la aceptación de la muerte como parte natural de la vida. Esta práctica refleja la singular relación que los mexicanos tienen con la muerte.</p>
+                    <p>Las calaveritas no solo decoran los altares, sino que también se regalan entre amigos y familiares como un recordatorio lúdico de nuestra mortalidad.</p>
+                </div>
+                <div class="food-ingredients">
+                    <h6>Ingredientes principales:</h6>
+                    <ul>
+                        <li>Azúcar glass</li>
+                        <li>Clara de huevo</li>
+                        <li>Jugo de limón</li>
+                        <li>Colorantes alimenticios</li>
+                        <li>Moldes de yeso</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Compartir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Pozole -->
+<div class="modal fade" id="modalPozole" tabindex="-1" aria-labelledby="modalPozoleLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalPozoleLabel">Pozole</h5>
+                <button type="button" class="btn-cerrar" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img" alt="Pozole">
+                <p class="text-muted mb-3"><i class="far fa-calendar me-1"></i> Platillo ceremonial</p>
+                <div class="food-description">
+                    <p>El pozole es un platillo ceremonial de origen prehispánico que ocupa un lugar especial en las celebraciones del Día de Muertos. En la época mexica, se preparaba con carne humana durante rituales religiosos, pero tras la conquista española se sustituyó por carne de cerdo.</p>
+                    <p>Este caldo sustancioso hecho a base de maíz cacahuazintle se sirve tradicionalmente en cazuelas de barro y se acompaña con lechuga, rábanos, cebolla, orégano y chile. Existen tres variedades principales: blanco, verde y rojo, cada una con su propio significado simbólico.</p>
+                    <p>En muchas comunidades, el pozole se prepara de manera colectiva, reunindo a familias enteras en su elaboración, fortaleciendo así los lazos comunitarios mientras se honra a los difuntos.</p>
+                </div>
+                <div class="food-ingredients">
+                    <h6>Ingredientes principales:</h6>
+                    <ul>
+                        <li>Maíz cacahuazintle</li>
+                        <li>Carne de cerdo o pollo</li>
+                        <li>Chiles (guajillo, ancho, árbol)</li>
+                        <li>Ajo y cebolla</li>
+                        <li>Especias (orégano, comino)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Compartir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Champurrado -->
+<div class="modal fade" id="modalChampurrado" tabindex="-1" aria-labelledby="modalChampurradoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalChampurradoLabel">Champurrado</h5>
+                <button type="button" class="btn-cerrar" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="https://images.unsplash.com/photo-1570194065650-2f894c5e0b6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img" alt="Champurrado">
+                <p class="text-muted mb-3"><i class="far fa-calendar me-1"></i> Bebida de chocolate</p>
+                <div class="food-description">
+                    <p>El champurrado es la bebida por excelencia de las noches frías de noviembre durante las celebraciones del Día de Muertos. Esta deliciosa combinación de chocolate y atole tiene raíces prehispánicas y representa la fusión de dos mundos: el cacao americano y las técnicas europeas.</p>
+                    <p>A diferencia del chocolate convencional, el champurrado se espesa con masa de maíz, dándole una textura única y un sabor profundamente arraigado a la tierra. Se sirve humeante en jícaras o tazas de barro, acompañando perfectamente el pan de muerto.</p>
+                    <p>En muchas regiones, el champurrado se prepara en ollas de cobre, que según la tradición, le dan un sabor especial. Su aroma a chocolate y canela impregna los hogares, creando una atmósfera cálida y acogedora para recibir a las almas visitantes.</p>
+                </div>
+                <div class="food-ingredients">
+                    <h6>Ingredientes principales:</h6>
+                    <ul>
+                        <li>Tabletas de chocolate tradicional</li>
+                        <li>Masa de maíz nixtamalizado</li>
+                        <li>Leche o agua</li>
+                        <li>Piloncillo</li>
+                        <li>Canela en raja</li>
+                        <li>Anís estrella (opcional)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Compartir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Fruta Cristalizada -->
+<div class="modal fade" id="modalFruta" tabindex="-1" aria-labelledby="modalFrutaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalFrutaLabel">Fruta Cristalizada</h5>
+                <button type="button" class="btn-cerrar" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="https://images.unsplash.com/photo-1568700942090-19dc36fa1d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img" alt="Fruta Cristalizada">
+                <p class="text-muted mb-3"><i class="far fa-calendar me-1"></i> Dulce tradicional</p>
+                <div class="food-description">
+                    <p>Las frutas cristalizadas son un elemento dulce y colorido que nunca falta en las ofrendas del Día de Muertos. Esta técnica de conservación, que data de la época colonial, permite preservar las frutas de temporada mediante un proceso de cocción en almíbar espeso.</p>
+                    <p>Entre las frutas más comunes se encuentran la calabaza, el camote, el higo, la naranja, la lima y el chilacayote. Cada una representa los frutos de la tierra y la abundancia que se desea para los difuntos en su viaje al más allá.</p>
+                    <p>El proceso de cristalización puede durar varios días y requiere de paciencia y cuidado, lo que convierte a estas delicias en un verdadero acto de amor y dedicación hacia los seres queridos que ya partieron.</p>
+                </div>
+                <div class="food-ingredients">
+                    <h6>Ingredientes principales:</h6>
+                    <ul>
+                        <li>Frutas de temporada (calabaza, camote, higos)</li>
+                        <li>Azúcar refinada</li>
+                        <li>Agua</li>
+                        <li>Canela en raja</li>
+                        <li>Clavos de olor</li>
+                        <li>Jarabe de piloncillo</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Compartir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-skull-crossbones me-2"></i> Día de Muertos</h5>
+                    <p>Una tradición mexicana que celebra la vida y honra a los que se han ido.</p>
+                    <div class="d-flex">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>© 2025 - Roberto M</p>
+                    <p>Diseñado con HTML </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

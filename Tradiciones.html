@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tradiciones del Día de Muertos</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --naranja-dm: #ff8c00;
+            --morado-dm: #4a235a;
+            --rosa-dm: #e84393;
+            --amarillo-dm: #f9c74f;
+            --verde-dm: #57d836;
+        }
+        
+        body {
+            padding-top: 70px;
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .navbar-degradada {
+            background: linear-gradient(90deg, var(--naranja-dm), var(--verde-dm));
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .navbar-degradada .nav-link {
+            color: white;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar-degradada .nav-link:hover {
+            color: var(--morado-dm);
+        }
+        
+        .hero-section {
+            background: url('banner.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 0 0 10px 10px;
+            position: relative;
+        }
+        
+        /* Capa oscura para mejor legibilidad del texto */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .hero-section .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title {
+            color: var(--morado-dm);
+            border-bottom: 2px solid var(--naranja-dm);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        
+        /* Estilos para tablas tipo Excel */
+        .excel-table {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .table-header {
+            background: linear-gradient(90deg, var(--naranja-dm), var(--rosa-dm));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .table-header h4 {
+            margin: 0;
+            font-weight: bold;
+        }
+        
+        .table-container {
+            padding: 0;
+        }
+        
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+        
+        .custom-table th {
+            background-color: var(--morado-dm);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            border-right: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .custom-table th:last-child {
+            border-right: none;
+        }
+        
+        .custom-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        
+        .custom-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .custom-table tr:hover {
+            background-color: rgba(255, 140, 0, 0.1);
+        }
+        
+        .elemento-lista {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .elemento-lista:before {
+            content: "•";
+            color: var(--naranja-dm);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Estilos para el aside */
+        .aside-card {
+            background: linear-gradient(135deg, var(--morado-dm), var(--rosa-dm));
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+        
+        .aside-title {
+            color: var(--amarillo-dm);
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .dato-curioso {
+            background-color: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .dato-titulo {
+            color: var(--amarillo-dm);
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .enlace-externo {
+            display: block;
+            background-color: rgba(255,255,255,0.2);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .enlace-externo:hover {
+            background-color: var(--amarillo-dm);
+            color: var(--morado-dm);
+            transform: translateX(5px);
+        }
+        
+        .footer {
+            background-color: var(--morado-dm);
+            color: white;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 40px 0;
+            }
+            
+            .custom-table {
+                font-size: 0.9rem;
+            }
+            
+            .custom-table th,
+            .custom-table td {
+                padding: 10px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-degradada">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white fw-bold" href="Noticias.html">
+                <i class="fas fa-skull-crossbones me-2"></i>
+                Día de Muertos
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Noticias.html">Noticias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="LineadeTiempo.html">Línea de Tiempo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ComidasTipicas.html">Comidas Típicas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ArtePopular.html">Arte Popular</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Leyendas.html">Leyendas y Mitos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="Tradiciones.html">Tradiciones</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sección Hero -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Tradiciones del Día de Muertos</h1>
+            <p class="lead">Rituales y costumbres que honran a nuestros antepasados</p>
+            <p>Descubre las prácticas que hacen única esta celebración mexicana</p>
+        </div>
+    </section>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <div class="row">
+            <!-- Columna principal con tablas -->
+            <div class="col-lg-8">
+                <section id="tradiciones" class="mb-5">
+                    <h2 class="section-title">Tradiciones Principales</h2>
+                    
+                    <!-- Tabla 1: Ofrendas -->
+                    <div class="excel-table">
+                        <div class="table-header">
+                            <h4><i class="fas fa-monument me-2"></i>Ofrendas y Altares</h4>
+                        </div>
+                        <div class="table-container">
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th width="25%">Elemento</th>
+                                        <th width="35%">Descripción</th>
+                                        <th width="20%">Significado</th>
+                                        <th width="20%">Origen</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Flores de Cempasúchil</td>
+                                        <td>Flores de color naranja intenso que se colocan en caminos y altares</td>
+                                        <td>Guían a las almas con su color y aroma</td>
+                                        <td>Prehispánico</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Velas y Veladoras</td>
+                                        <td>Luces que se encienden en los altares y tumbas</td>
+                                        <td>Iluminan el camino de regreso de las almas</td>
+                                        <td>Prehispánico/Colonial</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Papel Picado</td>
+                                        <td>Decoraciones de papel con figuras de calaveras y flores</td>
+                                        <td>Representan el viento y la fragilidad de la vida</td>
+                                        <td>Prehispánico</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Comida y Bebida</td>
+                                        <td>Platillos y bebidas favoritas del difunto</td>
+                                        <td>Alimentan a las almas durante su visita</td>
+                                        <td>Prehispánico</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Calaveritas de Azúcar</td>
+                                        <td>Dulces con forma de cráneo decorados con colores</td>
+                                        <td>Representan la muerte de manera festiva</td>
+                                        <td>Colonial</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pan de Muerto</td>
+                                        <td>Pan dulce decorado con "huesos"</td>
+                                        <td>Ofrenda de alimento para las almas</td>
+                                        <td>Colonial</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    
+                    <!-- Tabla 2: Tradiciones por Región -->
+                    <div class="excel-table">
+                        <div class="table-header">
+                            <h4><i class="fas fa-map-marked-alt me-2"></i>Tradiciones por Región</h4>
+                        </div>
+                        <div class="table-container">
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th width="25%">Región</th>
+                                        <th width="40%">Tradición Única</th>
+                                        <th width="35%">Características</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Ciudad de México</td>
+                                        <td>Megaofrenda en Zócalo y Desfiles</td>
+                                        <td>
+                                            <div class="elemento-lista">Ofrendas monumentales</div>
+                                            <div class="elemento-lista">Desfiles con catrinas</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Michoacán (Janitzio)</td>
+                                        <td>Noche de Muertos en la Isla</td>
+                                        <td>
+                                            <div class="elemento-lista">Pesca ritual</div>
+                                            <div class="elemento-lista">Velas en el lago</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Oaxaca</td>
+                                        <td>Comparsas y Mercados</td>
+                                        <td>
+                                            <div class="elemento-lista">Máscaras de madera</div>
+                                            <div class="elemento-lista">Calendas nocturnas</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Yucatán (Hanal Pixán)</td>
+                                        <td>Comida Especial Maya</td>
+                                        <td>
+                                            <div class="elemento-lista">Mukbil pollo</div>
+                                            <div class="elemento-lista">Altares en cruces de camino</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Columna lateral con datos curiosos -->
+            <div class="col-lg-4">
+                <aside>
+                    <div class="aside-card">
+                        <h3 class="aside-title">
+                            <i class="fas fa-lightbulb me-2"></i>Datos Curiosos
+                        </h3>
+                        
+                        <div class="dato-curioso">
+                            <div class="dato-titulo">
+                                <i class="fas fa-award me-2"></i>Patrimonio UNESCO
+                            </div>
+                            <p>En 2008, el Día de Muertos fue declarado Patrimonio Cultural Inmaterial de la Humanidad.</p>
+                        </div>
+                        
+                        <div class="dato-curioso">
+                            <div class="dato-titulo">
+                                <i class="fas fa-history me-2"></i>3,000 Años de Historia
+                            </div>
+                            <p>Esta tradición tiene raíces en rituales indígenas que se remontan a más de 3 milenios.</p>
+                        </div>
+                        
+                        <div class="dato-curioso">
+                            <div class="dato-titulo">
+                                <i class="fas fa-flower me-2"></i>Flor de 20 Pétalos
+                            </div>
+                            <p>El cempasúchil significa "veinte flores" en náhuatl por sus múltiples pétalos.</p>
+                        </div>
+                        
+                        <div class="dato-curioso">
+                            <div class="dato-titulo">
+                                <i class="fas fa-film me-2"></i>Inspiración para Coco
+                            </div>
+                            <p>La película "Coco" investigó profundamente las tradiciones para representarlas con respeto.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="aside-card">
+                        <h3 class="aside-title">
+                            <i class="fas fa-external-link-alt me-2"></i>Enlaces de Interés
+                        </h3>
+                        
+                        <a href="https://www.gob.mx/cultura/es/articulos/dia-de-muertos-tradicion-mexicana-que-trasciende-en-el-tiempo" class="enlace-externo" target="_blank">
+                            <i class="fas fa-landmark me-2"></i>Secretaría de Cultura
+                        </a>
+                        
+                        <a href="https://ich.unesco.org/es/RL/las-fiestas-indigenas-dedicadas-a-los-muertos-00054" class="enlace-externo" target="_blank">
+                            <i class="fas fa-globe-americas me-2"></i>UNESCO - Patrimonio
+                        </a>
+                        
+                        <a href="https://www.mexicodesconocido.com.mx/tradiciones-dia-de-muertos-en-mexico.html" class="enlace-externo" target="_blank">
+                            <i class="fas fa-map-marked-alt me-2"></i>México Desconocido
+                        </a>
+                    </div>
+                    
+                    <div class="aside-card">
+                        <h3 class="aside-title">
+                            <i class="fas fa-chart-bar me-2"></i>Estadísticas
+                        </h3>
+                        <div class="dato-curioso">
+                            <div class="dato-titulo">Celebración Nacional</div>
+                            <p>Más del 85% de los mexicanos participa en alguna tradición del Día de Muertos</p>
+                        </div>
+                        <div class="dato-curioso">
+                            <div class="dato-titulo">Turismo</div>
+                            <p>Atrae a más de 2 millones de turistas internacionales cada año</p>
+                        </div>
+                        <div class="dato-curioso">
+                            <div class="dato-titulo">Producción</div>
+                            <p>Se producen más de 5 millones de calaveritas de azúcar anualmente</p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-skull-crossbones me-2"></i> Día de Muertos</h5>
+                    <p>Una tradición mexicana que celebra la vida y honra a los que se han ido.</p>
+                    <div class="d-flex">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>© 2025 - Moctezuma Quiroz Roberto </p>
+                    <p>Diseñado con HTML </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

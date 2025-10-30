@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leyendas y Mitos del Centro de México</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --naranja-dm: #ff8c00;
+            --morado-dm: #4a235a;
+            --rosa-dm: #e84393;
+            --amarillo-dm: #f9c74f;
+            --verde-dm: #57d836;
+        }
+        
+        body {
+            padding-top: 70px;
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .navbar-degradada {
+            background: linear-gradient(90deg, var(--naranja-dm), var(--verde-dm));
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .navbar-degradada .nav-link {
+            color: white;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar-degradada .nav-link:hover {
+            color: var(--morado-dm);
+        }
+        
+        .hero-section {
+            background: url('banner.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 0 0 10px 10px;
+            position: relative;
+        }
+        
+        /* Capa oscura para mejor legibilidad del texto */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .hero-section .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title {
+            color: var(--morado-dm);
+            border-bottom: 2px solid var(--naranja-dm);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        
+        /* Estilos para los tabs */
+        .nav-tabs-custom {
+            border-bottom: 3px solid var(--naranja-dm);
+        }
+        
+        .nav-tabs-custom .nav-link {
+            color: var(--morado-dm);
+            font-weight: 600;
+            border: none;
+            padding: 15px 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tabs-custom .nav-link:hover {
+            background-color: rgba(255, 140, 0, 0.1);
+            border: none;
+        }
+        
+        .nav-tabs-custom .nav-link.active {
+            background: linear-gradient(90deg, var(--naranja-dm), var(--rosa-dm));
+            color: white;
+            border: none;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .tab-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 0 10px 10px 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .leyenda-card {
+            border-left: 4px solid var(--naranja-dm);
+            padding-left: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .leyenda-title {
+            color: var(--morado-dm);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .leyenda-origen {
+            color: var(--rosa-dm);
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        /* Estilos para el aside */
+        .aside-card {
+            background: linear-gradient(135deg, var(--morado-dm), var(--rosa-dm));
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+        
+        .aside-title {
+            color: var(--amarillo-dm);
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .diferencia-item {
+            background-color: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .diferencia-titulo {
+            color: var(--amarillo-dm);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            background-color: var(--morado-dm);
+            color: white;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 40px 0;
+            }
+            
+            .nav-tabs-custom .nav-link {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-degradada">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white fw-bold" href="Noticias.html">
+            <i class="fas fa-skull-crossbones me-2"></i>
+            Día de Muertos
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="Noticias.html">Noticias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="LineadeTiempo.html">Línea de Tiempo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="ComidasTipicas.html">Comidas Típicas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="ArtePopular.html">Arte Popular</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="Leyendas.html">Leyendas y Mitos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Tradiciones.html">Tradiciones</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <!-- Sección Hero -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Leyendas y Mitos del Centro de México</h1>
+            <p class="lead">Historias que han trascendido generaciones</p>
+            <p>Descubre las narraciones tradicionales que forman parte de nuestra identidad cultural</p>
+        </div>
+    </section>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <div class="row">
+            <!-- Columna principal con tabs -->
+            <div class="col-lg-8">
+                <section id="leyendas" class="mb-5">
+                    <h2 class="section-title">Leyendas y Mitos Tradicionales</h2>
+                    
+                    <ul class="nav nav-tabs nav-tabs-custom" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="leyendas-tab" data-bs-toggle="tab" data-bs-target="#leyendas-content" type="button" role="tab" aria-controls="leyendas-content" aria-selected="true">
+                                <i class="fas fa-ghost me-2"></i>Leyendas
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="mitos-tab" data-bs-toggle="tab" data-bs-target="#mitos-content" type="button" role="tab" aria-controls="mitos-content" aria-selected="false">
+                                <i class="fas fa-mountain me-2"></i>Mitos
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="fantasmas-tab" data-bs-toggle="tab" data-bs-target="#fantasmas-content" type="button" role="tab" aria-controls="fantasmas-content" aria-selected="false">
+                                <i class="fas fa-hat-cowboy me-2"></i>Fantasmas
+                            </button>
+                        </li>
+                    </ul>
+                    
+                    <div class="tab-content" id="myTabContent">
+                        <!-- Tab de Leyendas -->
+                        <div class="tab-pane fade show active" id="leyendas-content" role="tabpanel" aria-labelledby="leyendas-tab">
+                            <h3 class="mb-4" style="color: var(--morado-dm);">Leyendas del Centro de México</h3>
+                            
+                            <div class="leyenda-card">
+                                <h4 class="leyenda-title">La Llorona</h4>
+                                <p class="leyenda-origen">Leyenda colonial con origen prehispánico</p>
+                                <p>Una de las leyendas más conocidas de México cuenta la historia de una mujer que, tras ahogar a sus hijos en un río por despecho, vaga eternamente lamentándose y buscándolos. Su grito "¡Ay, mis hijos!" se escucha en la noche, especialmente cerca de ríos y lagos.</p>
+                                <p>Esta leyenda tiene raíces tanto en la tradición indígena (relacionada con la diosa Cihuacóatl) como en la época colonial, donde se adaptó para transmitir enseñanzas morales.</p>
+                            </div>
+                            
+                            <div class="leyenda-card">
+                                <h4 class="leyenda-title">El Callejón del Beso</h4>
+                                <p class="leyenda-origen">Leyenda romántica de Guanajuato</p>
+                                <p>En el pintoresco callejón de Guanajuato, tan estrecho que los balcones de las casas opuestas casi se tocan, se desarrolló la trágica historia de amor entre Doña Carmen y Don Luis. El padre de la joven, al descubrir su romance, asesinó a su hija mientras su amado intentaba besarla por última vez desde el balón contiguo.</p>
+                                <p>Se dice que las parejas que se besan en este callejón tendrán 7 años de felicidad, mientras que quienes no lo hagan sufrirán 7 años de mala suerte.</p>
+                            </div>
+                            
+                            <div class="leyenda-card">
+                                <h4 class="leyenda-title">La Mulata de Córdoba</h4>
+                                <p class="leyenda-origen">Leyenda veracruzana del siglo XVII</p>
+                                <p>En la ciudad de Córdoba, Veracruz, vivía una hermosa mujer de tez morena de quien se decía que nunca envejecía. Acusada de brujería por la Santa Inquisición, fue encarcelada. La noche antes de su ejecución, dibujó un barco en la pared de su celda y, ante el asombro de los guardias, subió a la embarcación que cobró vida y la llevó a la libertad.</p>
+                                <p>Nunca más se supo de ella, pero su leyenda perdura como símbolo de misterio y rebeldía.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Tab de Mitos -->
+                        <div class="tab-pane fade" id="mitos-content" role="tabpanel" aria-labelledby="mitos-tab">
+                            <h3 class="mb-4" style="color: var(--morado-dm);">Mitos del Centro de México</h3>
+                            
+                            <div class="leyenda-card">
+                                <h4 class="leyenda-title">Los Nahuales</h4>
+                                <p class="leyenda-origen">Mito prehispánico sobre transformación</p>
+                                <p>Según la tradición mesoamericana, los nahuales son seres humanos con la capacidad de transformarse en animales, usualmente coyotes, jaguares o aves. Esta habilidad puede ser innata o adquirida mediante rituales secretos.</p>
+                                <p>En algunas versiones, los nahuales usan sus poderes para proteger a la comunidad, mientras que en otras se les considera brujos que realizan actos malévolos durante la noche.</p>
+                            </div>
+                            
+                            <div class="leyenda-card">
+                                <h4 class="leyenda-title">El Charro Negro</h4>
+                                <p class="leyenda-origen">Mito del altiplano central</p>
+                                <p>Esta figura espectral aparece como un elegante jinete vestido completamente de negro que recorre los caminos rurales en las noches. Se dice que es el diablo o un alma en pena que ofrece riquezas a los viajeros a cambio de su alma.</p>
+                                <p>Quienes se encuentran con él deben evitar aceptar cualquier oferta o montar en su caballo, pues esto significaría la perdición eterna.</p>
+                            </div>
+                            
+                            <div class="leyenda-card">
+                                <h4 class="leyenda-title">Los Aluxes</h4>
+                                <p class="leyenda-origen">Mito maya extendido en el centro de México</p>
+                                <p>Los aluxes son pequeños seres mitológicos, similares a duendes, que habitan en los bosques y milpas. Según la tradición, son guardianes de la naturaleza que pueden ser benévolos o traviesos dependiendo de cómo los traten los humanos.</p>
+                                <p>Los campesinos solían construir pequeñas casas para ellos en sus milpas, dejando ofrendas de comida para asegurar una buena cosecha y protección contra plagas.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Tab de Fantasmas -->
+                        <div class="tab-pane fade" id="fantasmas-content" role="tabpanel" aria-labelledby="fantasmas-tab">
+                            <h3 class="mb-4" style="color: var(--morado-dm);">Fantasmas y Apariciones</h3>
+                            
+                            <div class="leyenda-card">
+                                <h4 class="leyenda-title">El Fantasma del Convento de Churubusco</h4>
+                                <p class="leyenda-origen">Leyenda urbana de la Ciudad de México</p>
+                                <p>En el antiguo convento de Churubusco, ahora museo, se aparece el espectro de una monja que camina por los pasillos y se detiene frente a ciertas pinturas religiosas. Testigos afirman haber sentido su presencia y escuchado susurros en las salas vacías.</p>
+                                <p>Se cree que era una monja que murió de amor o por una pena profunda, y que su espíritu no puede descansar en paz.</p>
+                            </div>
+                            
+                            <div class="leyenda-card">
+                                <h4 class="leyenda-title">La Planchada</h4>
+                                <p class="leyenda-origen">Leyenda hospitalaria</p>
+                                <p>En varios hospitales del centro de México se reporta la aparición de una enfermera fantasma, siempre impecablemente uniformada, que recorre las salas durante la noche. Ayuda a pacientes en estado crítico y desaparece misteriosamente cuando alguien intenta confrontarla.</p>
+                                <p>Según la versión más difundida, era una enfermera dedicada que murió trágicamente y regresa para continuar su labor de cuidado.</p>
+                            </div>
+                            
+                            <div class="leyenda-card">
+                                <h4 class="leyenda-title">El Niño del Ataud</h4>
+                                <p class="leyenda-origen">Leyenda del Estado de México</p>
+                                <p>En algunas poblaciones del Estado de México se cuenta la historia de un niño fantasma que lleva consigo un pequeño ataúd. Aparece en caminos solitarios pidiendo ayuda a los transeúntes, pero quienes se acercan descubren con horror que el ataúd está vacío y está destinado para ellos.</p>
+                                <p>Esta leyenda sirve como advertencia sobre los peligros de transitar por lugares desolados durante la noche.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Columna lateral con diferencias -->
+            <div class="col-lg-4">
+                <aside>
+                    <div class="aside-card">
+                        <h3 class="aside-title">
+                            <i class="fas fa-book-open me-2"></i>Diferencia entre Mito y Leyenda
+                        </h3>
+                        
+                        <div class="diferencia-item">
+                            <div class="diferencia-titulo">Mito</div>
+                            <p>Narración sagrada que explica el origen del mundo, los dioses y fenómenos naturales. Sus personajes son sobrenaturales (dioses, semidioses, monstruos) y ocurre en un tiempo primordial.</p>
+                        </div>
+                        
+                        <div class="diferencia-item">
+                            <div class="diferencia-titulo">Leyenda</div>
+                            <p>Relato tradicional basado en eventos históricos o personas reales, pero con elementos fantásticos. Se desarrolla en un tiempo y lugar específicos, y sus personajes son humanos con experiencias sobrenaturales.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="aside-card">
+                        <h3 class="aside-title">
+                            <i class="fas fa-lightbulb me-2"></i>Características Principales
+                        </h3>
+                        
+                        <div class="diferencia-item">
+                            <div class="diferencia-titulo">Función del Mito</div>
+                            <p>Explicar el origen del cosmos, establecer normas sociales y religiosas, y justificar rituales y costumbres.</p>
+                        </div>
+                        
+                        <div class="diferencia-item">
+                            <div class="diferencia-titulo">Función de la Leyenda</div>
+                            <p>Preservar la memoria histórica, transmitir valores morales, entretener y explicar características geográficas o nombres de lugares.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="aside-card">
+                        <h3 class="aside-title">
+                            <i class="fas fa-map-marked-alt me-2"></i>Origen Geográfico
+                        </h3>
+                        <p>Las leyendas y mitos del centro de México reflejan la rica mezcla de tradiciones indígenas (náhuatl, otomí, purépecha) con influencias españolas durante la colonia.</p>
+                        <p>Esta región, que incluye Ciudad de México, Estado de México, Hidalgo, Morelos, Puebla y Tlaxcala, conserva narraciones que han evolucionado a lo largo de siglos.</p>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-skull-crossbones me-2"></i> Día de Muertos</h5>
+                    <p>Una tradición mexicana que celebra la vida y honra a los que se han ido.</p>
+                    <div class="d-flex">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>© 2025 - Roberto M</p>
+                    <p>Diseñado con HTML </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
